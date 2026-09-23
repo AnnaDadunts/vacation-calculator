@@ -283,12 +283,10 @@
         }
         const fullMonthsDisplay = (years * 12) + months;
 
-        // 2. Ճշգրիտ օրական/ամսական կուտակման հաշվարկ (Excel-ի տրամաբանությամբ)
-        const diffTime = Math.abs(calc - start);
-        const totalDaysWorked = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        const diffTime = calc.getTime() - start.getTime();
+        const totalDaysWorked = Math.round(diffTime / (1000 * 60 * 60 * 24)) + 1;
         
-        // Օրական կուտակման դրույքաչափ
-        const dailyRate = annualDays / 365.25;
+        const dailyRate = annualDays / 365;
         const accruedVacation = Math.round((totalDaysWorked * dailyRate) * 100) / 100;
         const remainingDays = Math.round((accruedVacation - totalUsedDays) * 100) / 100;
 
